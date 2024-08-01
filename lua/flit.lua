@@ -239,12 +239,12 @@ local function setup (args)
 
   keys = args.keys or args.keymaps or { f = 'f', F = 'F', t = 't', T = 'T' }
 
-  local key_specific_leap_args = {
-    [keys.f] = {},
-    [keys.F] = { backward = true },
-    [keys.t] = { offset = -1, t = true },
-    [keys.T] = { backward = true, offset = 1, t = true }
-  }
+  local key_specific_leap_args = {}
+
+  if keys.f then key_specific_leap_args[keys.f] = {} end
+  if keys.F then key_specific_leap_args[keys.F] = { backward = true } end
+  if keys.t then key_specific_leap_args[keys.t] = { offset = -1, t = true } end
+  if keys.T then key_specific_leap_args[keys.T] = { backward = true, offset = 1, t = true } end
 
   for _, mode in ipairs({'n', 'x', 'o'}) do
     for _, key in pairs(keys) do
